@@ -10,9 +10,6 @@ public class Repository {
 
     private String name;
 
-    @SerializedName("full_name")
-    private String fullName;
-
     private String description;
 
     @SerializedName("html_url")
@@ -26,26 +23,12 @@ public class Repository {
     @SerializedName("stargazers_count")
     private int stargazersCount;
 
-    @SerializedName("created_at")
-    private String createDate;
-
-    @SerializedName("updated_at")
-    private String updateDate;
-
     public String getName() {
         return name;
     }
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public String getFullName() {
-        return fullName;
-    }
-
-    public void setFullName(String fullName) {
-        this.fullName = fullName;
     }
 
     public String getDescription() {
@@ -86,21 +69,5 @@ public class Repository {
 
     public void setStargazersCount(int stargazersCount) {
         this.stargazersCount = stargazersCount;
-    }
-
-    public String getCreateDate() {
-        return createDate;
-    }
-
-    public void setCreateDate(String createDate) {
-        this.createDate = createDate;
-    }
-
-    public String getUpdateDate() {
-        return updateDate;
-    }
-
-    public void setUpdateDate(String updateDate) {
-        this.updateDate = updateDate;
     }
 }
