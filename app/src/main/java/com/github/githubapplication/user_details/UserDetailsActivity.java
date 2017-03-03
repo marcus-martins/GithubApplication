@@ -1,15 +1,15 @@
-package com.github.githubapplication.repository_details;
+package com.github.githubapplication.user_details;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import com.github.githubapplication.R;
 
-public class RepositoryDetailsActivity extends AppCompatActivity {
+public class UserDetailsActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_repository_details);
+        setContentView(R.layout.activity_user_details);
     }
 }

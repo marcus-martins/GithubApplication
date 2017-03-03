@@ -1,4 +1,4 @@
-package com.github.githubapplication.repository_details.contracts;
+package com.github.githubapplication.user_details.contracts;
 
 /**
  * Created by marcus on 02/03/17.
