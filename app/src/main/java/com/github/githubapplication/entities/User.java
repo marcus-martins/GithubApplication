@@ -13,8 +13,6 @@ public class User {
     @SerializedName("avatar_url")
     private String photo;
 
-    private String score;
-
     public String getLogin() {
         return login;
     }
@@ -29,13 +27,5 @@ public class User {
 
     public void setPhoto(String photo) {
         this.photo = photo;
-    }
-
-    public String getScore() {
-        return score;
-    }
-
-    public void setScore(String score) {
-        this.score = score;
     }
 }

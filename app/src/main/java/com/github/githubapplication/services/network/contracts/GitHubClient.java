@@ -1,8 +1,9 @@
-package com.github.githubapplication.services.rest.contracts;
+package com.github.githubapplication.services.network.contracts;
 
 
 import com.github.githubapplication.entities.Repository;
 import com.github.githubapplication.entities.SearchUser;
+import com.github.githubapplication.entities.User;
 
 import java.util.List;
 
@@ -16,6 +17,9 @@ import rx.Observable;
  */
 
 public interface GitHubClient {
+
+    @GET("/users")
+    Observable<List<User>> listUsers();
 
     @GET("/search/users")
     Observable<SearchUser> searchUsers(

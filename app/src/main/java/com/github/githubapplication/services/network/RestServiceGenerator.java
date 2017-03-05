@@ -1,4 +1,4 @@
-package com.github.githubapplication.services.rest;
+package com.github.githubapplication.services.network;
 
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
