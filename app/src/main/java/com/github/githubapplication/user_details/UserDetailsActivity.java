@@ -13,20 +13,17 @@ import com.github.githubapplication.R;
 import com.github.githubapplication.entities.Repository;
 import com.github.githubapplication.services.network.RestServiceGenerator;
 import com.github.githubapplication.services.network.contracts.GitHubClient;
-import com.github.githubapplication.user_details.contracts.UserInteractor;
-import com.github.githubapplication.user_details.contracts.UserPresenter;
-import com.github.githubapplication.user_details.contracts.UserView;
+import com.github.githubapplication.user_details.contracts.UserDetailsInteractor;
+import com.github.githubapplication.user_details.contracts.UserDetailsPresenter;
+import com.github.githubapplication.user_details.contracts.UserDetailsView;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import rx.subscriptions.CompositeSubscription;
+public class UserDetailsActivity extends AppCompatActivity implements UserDetailsView {
 
-public class UserDetailsActivity extends AppCompatActivity implements UserView {
-
-    private UserPresenter presenter;
+    private UserDetailsPresenter presenter;
     private ProgressBar progressBar;
-    private CompositeSubscription compositeSubscription = new CompositeSubscription();
 
     private String loginName;
 
@@ -36,8 +33,8 @@ public class UserDetailsActivity extends AppCompatActivity implements UserView {
         setContentView(R.layout.activity_user_details);
 
         GitHubClient gitHubClient = RestServiceGenerator.createService(GitHubClient.class);
-        UserInteractor interactor = new UserInteractorImpl(gitHubClient);
-        presenter = new UserPresenterImpl(this, interactor, compositeSubscription);
+        UserDetailsInteractor interactor = new UserDetailsInteractorImpl(gitHubClient);
+        presenter = new UserDetailsPresenterImpl(this, interactor);
 
         progressBar = (ProgressBar) findViewById(R.id.loadUserProgress);
 
@@ -70,7 +67,6 @@ public class UserDetailsActivity extends AppCompatActivity implements UserView {
     protected void onDestroy() {
         super.onDestroy();
         presenter.viewDestroy();
-        compositeSubscription.unsubscribe();
     }
 
     @Override

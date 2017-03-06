@@ -1,7 +1,7 @@
 package com.github.githubapplication.user_details;
 
 import com.github.githubapplication.services.network.contracts.GitHubClient;
-import com.github.githubapplication.user_details.contracts.UserInteractor;
+import com.github.githubapplication.user_details.contracts.UserDetailsInteractor;
 
 import rx.android.schedulers.AndroidSchedulers;
 
@@ -9,11 +9,11 @@ import rx.android.schedulers.AndroidSchedulers;
  * Created by marcus on 04/03/17.
  */
 
-public class UserInteractorImpl implements UserInteractor {
+public class UserDetailsInteractorImpl implements UserDetailsInteractor {
 
     private GitHubClient gitHubClient;
 
-    public UserInteractorImpl(GitHubClient gitHubClient) {
+    public UserDetailsInteractorImpl(GitHubClient gitHubClient) {
         this.gitHubClient = gitHubClient;
     }
 

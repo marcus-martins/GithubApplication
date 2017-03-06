@@ -8,7 +8,7 @@ import java.util.List;
  * Created by marcus on 02/03/17.
  */
 
-public interface UserView {
+public interface UserDetailsView {
 
     void loadRepositories(List<Repository> repositoryList);
 

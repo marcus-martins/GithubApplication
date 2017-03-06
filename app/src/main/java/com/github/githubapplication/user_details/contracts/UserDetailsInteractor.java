@@ -10,7 +10,7 @@ import rx.subscriptions.CompositeSubscription;
  * Created by marcus on 02/03/17.
  */
 
-public interface UserInteractor {
+public interface UserDetailsInteractor {
 
     void getRepositories(OnRepositoryList callback, String loginName);
 
