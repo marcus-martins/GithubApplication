@@ -20,9 +20,13 @@ import com.github.githubapplication.user_details.contracts.UserDetailsView;
 import java.util.ArrayList;
 import java.util.List;
 
+import rx.subscriptions.CompositeSubscription;
+
 public class UserDetailsActivity extends AppCompatActivity implements UserDetailsView {
 
     private UserDetailsPresenter presenter;
+    private CompositeSubscription compositeSubscription;
+
     private ProgressBar progressBar;
 
     private String loginName;
@@ -33,7 +37,8 @@ public class UserDetailsActivity extends AppCompatActivity implements UserDetail
         setContentView(R.layout.activity_user_details);
 
         GitHubClient gitHubClient = RestServiceGenerator.createService(GitHubClient.class);
-        UserDetailsInteractor interactor = new UserDetailsInteractorImpl(gitHubClient);
+        compositeSubscription = new CompositeSubscription();
+        UserDetailsInteractor interactor = new UserDetailsInteractorImpl(gitHubClient, compositeSubscription);
         presenter = new UserDetailsPresenterImpl(this, interactor);
 
         progressBar = (ProgressBar) findViewById(R.id.loadUserProgress);
@@ -66,6 +71,7 @@ public class UserDetailsActivity extends AppCompatActivity implements UserDetail
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        compositeSubscription.clear();
         presenter.viewDestroy();
     }
 

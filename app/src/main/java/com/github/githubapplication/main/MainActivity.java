@@ -23,10 +23,13 @@ import com.github.githubapplication.user_details.UserDetailsActivity;
 import java.util.ArrayList;
 import java.util.List;
 
+import rx.subscriptions.CompositeSubscription;
+
 public class MainActivity extends AppCompatActivity implements MainView, SearchView.OnQueryTextListener {
 
     private MainPresenter presenter;
     private ProgressBar progressBar;
+    private CompositeSubscription compositeSubscription;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,7 +37,9 @@ public class MainActivity extends AppCompatActivity implements MainView, SearchV
         setContentView(R.layout.activity_main);
 
         GitHubClient gitHubClient = RestServiceGenerator.createService(GitHubClient.class);
-        MainInteractor interactor = new MainInteractorImpl(gitHubClient);
+        compositeSubscription = new CompositeSubscription();
+
+        MainInteractor interactor = new MainInteractorImpl(gitHubClient, compositeSubscription);
         presenter = new MainPresenterImpl(this, interactor);
 
         progressBar = (ProgressBar) findViewById(R.id.loadUserProgress);
@@ -49,6 +54,7 @@ public class MainActivity extends AppCompatActivity implements MainView, SearchV
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        compositeSubscription.clear();
         presenter.viewDestroy();
     }
 

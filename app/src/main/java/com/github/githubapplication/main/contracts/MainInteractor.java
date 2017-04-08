@@ -4,8 +4,6 @@ import com.github.githubapplication.entities.User;
 
 import java.util.List;
 
-import rx.subscriptions.CompositeSubscription;
-
 /**
  * Created by marcus on 02/03/17.
  */
@@ -19,8 +17,6 @@ public interface MainInteractor {
     interface OnUserList {
 
         void returnUsers(List<User> userList);
-
-        CompositeSubscription getCompositeSubscription();
 
     }
 }

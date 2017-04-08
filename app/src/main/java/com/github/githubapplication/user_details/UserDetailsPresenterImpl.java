@@ -7,8 +7,6 @@ import com.github.githubapplication.user_details.contracts.UserDetailsView;
 
 import java.util.List;
 
-import rx.subscriptions.CompositeSubscription;
-
 /**
  * Created by marcus on 04/03/17.
  */
@@ -16,7 +14,6 @@ import rx.subscriptions.CompositeSubscription;
 public class UserDetailsPresenterImpl implements UserDetailsPresenter, UserDetailsInteractor.OnRepositoryList {
     private UserDetailsView userDetailsView;
     private UserDetailsInteractor userDetailsInteractor;
-    private CompositeSubscription compositeSubscription = new CompositeSubscription();
 
     public UserDetailsPresenterImpl(UserDetailsView userDetailsView, UserDetailsInteractor userDetailsInteractor) {
         this.userDetailsView = userDetailsView;
@@ -34,7 +31,6 @@ public class UserDetailsPresenterImpl implements UserDetailsPresenter, UserDetai
     @Override
     public void viewDestroy() {
         if (userDetailsView != null) {
-            compositeSubscription.clear();
             userDetailsView = null;
         }
     }
@@ -45,11 +41,6 @@ public class UserDetailsPresenterImpl implements UserDetailsPresenter, UserDetai
             userDetailsView.hideProgress();
             userDetailsView.loadRepositories(repositoryList);
         }
-    }
-
-    @Override
-    public CompositeSubscription getCompositeSubscription() {
-        return compositeSubscription;
     }
 
     public UserDetailsView getUserDetailsView() {

@@ -7,8 +7,6 @@ import com.github.githubapplication.main.contracts.MainView;
 
 import java.util.List;
 
-import rx.subscriptions.CompositeSubscription;
-
 /**
  * Created by marcus on 04/03/17.
  */
@@ -17,7 +15,6 @@ public class MainPresenterImpl implements MainPresenter, MainInteractor.OnUserLi
 
     private MainView mainView;
     private MainInteractor mainInteractor;
-    private CompositeSubscription compositeSubscription = new CompositeSubscription();
 
     public MainPresenterImpl(MainView mainView, MainInteractor mainInteractor) {
         this.mainView = mainView;
@@ -44,7 +41,6 @@ public class MainPresenterImpl implements MainPresenter, MainInteractor.OnUserLi
     @Override
     public void viewDestroy() {
         if (mainView != null)  {
-            compositeSubscription.clear();
             mainView = null;
         }
     }
@@ -55,11 +51,6 @@ public class MainPresenterImpl implements MainPresenter, MainInteractor.OnUserLi
             mainView.hideProgress();
             mainView.loadUsers(userList);
         }
-    }
-
-    @Override
-    public CompositeSubscription getCompositeSubscription() {
-        return compositeSubscription;
     }
 
     public MainView getMainView() {
